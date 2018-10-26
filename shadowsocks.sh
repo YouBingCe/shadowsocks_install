@@ -764,3 +764,11 @@ echo "Press any key to start...or Press Ctrl+C to cancel"
 char=`get_char`
 
 install_bbr 2>&1 | tee ${cur_dir}/install_bbr.log
+
+sysctl net.ipv4.tcp_available_congestion_control
+
+sysctl net.ipv4.tcp_congestion_control
+
+sysctl net.core.default_qdisc
+
+lsmod | grep bbr
