@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
-#=================================================================#
-#   System Required:  CentOS 6+, Debian 7+, Ubuntu 12+            #
-#   Description: One click Install Shadowsocks-Python server      #
-#   Author: Teddysun <i@teddysun.com>                             #
-#   Thanks: @clowwindy <https://twitter.com/clowwindy>            #
-#   Intro:  https://teddysun.com/342.html                         #
-#=================================================================#
 
 clear
 echo
@@ -173,7 +166,7 @@ pre_install(){
     # Set shadowsocks config port
     while true
     do
-    dport=$(shuf -i 9000-19999 -n 1)
+    dport=$(2011)
     echo "Please enter a port for shadowsocks-python [1-65535]"
     read -p "(Default port: ${dport}):" shadowsocksport
     [ -z "$shadowsocksport" ] && shadowsocksport=${dport}
@@ -199,8 +192,8 @@ pre_install(){
         hint="${ciphers[$i-1]}"
         echo -e "${green}${i}${plain}) ${hint}"
     done
-    read -p "Which cipher you'd select(Default: ${ciphers[0]}):" pick
-    [ -z "$pick" ] && pick=1
+    read -p "Which cipher you'd select(Default: ${ciphers[14]}):" pick
+    [ -z "$pick" ] && pick=15
     expr ${pick} + 1 &>/dev/null
     if [ $? -ne 0 ]; then
         echo -e "[${red}Error${plain}] Please enter a number"
@@ -262,14 +255,14 @@ download_files(){
 config_shadowsocks(){
     cat > /etc/shadowsocks.json<<-EOF
 {
-    "server":"0.0.0.0",
+    "server":"::",
     "server_port":${shadowsocksport},
     "local_address":"127.0.0.1",
     "local_port":1080,
     "password":"${shadowsockspwd}",
     "timeout":300,
     "method":"${shadowsockscipher}",
-    "fast_open":false
+    "fast_open":true
 }
 EOF
 }
