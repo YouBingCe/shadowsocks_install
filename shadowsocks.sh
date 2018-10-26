@@ -166,7 +166,7 @@ pre_install(){
     # Set shadowsocks config port
     while true
     do
-    dport=$(2011)
+    dport=2011
     echo "Please enter a port for shadowsocks-python [1-65535]"
     read -p "(Default port: ${dport}):" shadowsocksport
     [ -z "$shadowsocksport" ] && shadowsocksport=${dport}
